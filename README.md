@@ -74,78 +74,135 @@ flowchart LR
         I --> J["Security Report"]
     end
 ```
-🔥 Core Features
-Feature	Description
-URL Analysis	Parses and normalizes submitted URLs
-Static Security Checks	Detects suspicious URL patterns without visiting the website
-Risk Scoring	Calculates a 0–100 risk score
-Risk Levels	Classifies links as LOW, MEDIUM, HIGH, or CRITICAL
-Human Explanation	Generates clear AI-style explanations
-Safe Recommendations	Suggests defensive user actions
-History Storage	Stores previous analysis results
-Markdown Reports	Generates readable security reports
-OpenAPI Docs	FastAPI-powered interactive API documentation
-🛡️ Detection Rules
+
+---
+
+## 🔥 Core Features
+
+| Feature | Description |
+|---|---|
+| URL Analysis | Parses and normalizes submitted URLs |
+| Static Security Checks | Detects suspicious URL patterns without visiting the website |
+| Risk Scoring | Calculates a 0–100 risk score |
+| Risk Levels | Classifies links as `LOW`, `MEDIUM`, `HIGH`, or `CRITICAL` |
+| Human Explanation | Generates clear AI-style explanations |
+| Safe Recommendations | Suggests defensive user actions |
+| History Storage | Stores previous analysis results |
+| Markdown Reports | Generates readable security reports |
+| OpenAPI Docs | FastAPI-powered interactive API documentation |
+
+---
+
+## 🛡️ Detection Rules
 
 AegisLink uses rule-based static analysis.
 
-Rule	What it Detects
-Missing HTTPS	Links that do not use secure HTTPS
-Missing Scheme	URLs submitted without http:// or https://
-Suspicious Keywords	Words like login, verify, password, payment, bank, wallet
-Long URL	URLs that are unusually long
-Very Long URL	URLs that may hide suspicious content
-IP Address Domain	URLs using an IP address instead of a domain
-Too Many Subdomains	Domains with suspiciously deep nesting
-Suspicious TLD	TLDs such as .zip, .mov, .click, .top, .xyz, .loan
-URL Shortener	Services like bit.ly, tinyurl.com, t.co
-Brand Impersonation Hint	Brand-like names used in suspicious contexts
+| Rule | What it Detects |
+|---|---|
+| Missing HTTPS | Links that do not use secure HTTPS |
+| Missing Scheme | URLs submitted without `http://` or `https://` |
+| Suspicious Keywords | Words like `login`, `verify`, `password`, `payment`, `bank`, `wallet` |
+| Long URL | URLs that are unusually long |
+| Very Long URL | URLs that may hide suspicious content |
+| IP Address Domain | URLs using an IP address instead of a domain |
+| Too Many Subdomains | Domains with suspiciously deep nesting |
+| Suspicious TLD | TLDs such as `.zip`, `.mov`, `.click`, `.top`, `.xyz`, `.loan` |
+| URL Shortener | Services like `bit.ly`, `tinyurl.com`, `t.co` |
+| Brand Impersonation Hint | Brand-like names used in suspicious contexts |
 
-AegisLink does not claim that a URL is definitely malicious. It only identifies static risk signals.
+> AegisLink does not claim that a URL is definitely malicious. It only identifies static risk signals.
 
-⚙️ Tech Stack
-Layer	Technology
-Language	Python
-Backend Framework	FastAPI
-Validation	Pydantic
-Database ORM	SQLAlchemy
-Database	SQLite
-Testing	Pytest
-Server	Uvicorn
-Documentation	OpenAPI / Swagger
-📡 API Endpoints
-Method	Endpoint	Description
-GET	/health	Service health check
-POST	/api/v1/analyses	Analyze a suspicious URL
-GET	/api/v1/analyses	List analysis history
-GET	/api/v1/analyses/{analysis_id}	Get analysis detail
-GET	/api/v1/reports/analyses/{analysis_id}	Generate a Markdown security report
-🚀 Quick Start
-1. Clone the repository
+---
+
+## ⚙️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python |
+| Backend Framework | FastAPI |
+| Validation | Pydantic |
+| Database ORM | SQLAlchemy |
+| Database | SQLite |
+| Testing | Pytest |
+| Server | Uvicorn |
+| Documentation | OpenAPI / Swagger |
+
+---
+
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Service health check |
+| `POST` | `/api/v1/analyses` | Analyze a suspicious URL |
+| `GET` | `/api/v1/analyses` | List analysis history |
+| `GET` | `/api/v1/analyses/{analysis_id}` | Get analysis detail |
+| `GET` | `/api/v1/reports/analyses/{analysis_id}` | Generate a Markdown security report |
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/FluxKnight/AegisLink.git
 cd AegisLink/backend
-2. Create a virtual environment
+```
+
+### 2. Create a virtual environment
+
+```bash
 python -m venv .venv
-3. Activate the environment
+```
+
+### 3. Activate the environment
 
 macOS / Linux:
 
+```bash
 source .venv/bin/activate
+```
 
 Windows PowerShell:
 
+```powershell
 .venv\Scripts\Activate.ps1
-4. Install dependencies
+```
+
+### 4. Install dependencies
+
+```bash
 pip install -r requirements.txt
-5. Run the API
+```
+
+### 5. Run the API
+
+```bash
 uvicorn app.main:app --reload
-6. Open API docs
+```
+
+### 6. Open API docs
+
+```text
 http://127.0.0.1:8000/docs
-🧪 Example Request
+```
+
+---
+
+## 🧪 Example Request
+
+```bash
 curl -X POST "http://127.0.0.1:8000/api/v1/analyses" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://paypal-login-security.example.com/verify-account"}'
-📦 Example Response
+```
+
+---
+
+## 📦 Example Response
+
+```json
 {
   "id": 1,
   "original_url": "https://paypal-login-security.example.com/verify-account",
@@ -176,10 +233,15 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analyses" \
   ],
   "created_at": "2026-05-25T12:00:00"
 }
-📄 Markdown Report Example
+```
+
+---
+
+## 📄 Markdown Report Example
 
 AegisLink can generate a readable report from any saved analysis.
 
+```md
 # AegisLink Security Report
 
 ## Summary
@@ -207,7 +269,13 @@ This URL may be risky because it uses account verification language and brand-li
 
 ## Note
 This analysis is based on static URL patterns only. It does not prove that a website is malicious.
-🧩 Project Structure
+```
+
+---
+
+## 🧩 Project Structure
+
+```text
 AegisLink/
 ├── backend/
 │   ├── app/
@@ -240,73 +308,92 @@ AegisLink/
 │   └── sample-response.json
 │
 └── README.md
-🧠 What This Project Demonstrates
+```
+
+---
+
+## 🧠 What This Project Demonstrates
 
 AegisLink demonstrates:
 
-Python backend engineering
-FastAPI API design
-Clean project architecture
-Static cybersecurity analysis
-Rule-based risk scoring
-AI-style explanation generation
-SQLAlchemy database modeling
-API documentation
-Report generation
-Safe defensive security thinking
-🎯 Hackathon Relevance
+- Python backend engineering
+- FastAPI API design
+- Clean project architecture
+- Static cybersecurity analysis
+- Rule-based risk scoring
+- AI-style explanation generation
+- SQLAlchemy database modeling
+- API documentation
+- Report generation
+- Safe defensive security thinking
+
+---
+
+## 🎯 Hackathon Relevance
 
 AegisLink is built as a hackathon-ready backend project.
 
 It shows that I can take a real-world security problem, design a clean backend system, implement useful API endpoints, generate readable explanations, and document the project clearly.
 
-This project is not just a script.
+This project is not just a script.  
 It is structured like a real backend service.
 
-🔐 Safety Note
+---
+
+## 🔐 Safety Note
 
 AegisLink is defensive and educational only.
 
-It does not:
+It does **not**:
 
-perform attacks
-exploit websites
-collect credentials
-generate phishing pages
-bypass security systems
-crawl or visit submitted URLs
-interact with live websites
-analyze malware
+- perform attacks
+- exploit websites
+- collect credentials
+- generate phishing pages
+- bypass security systems
+- crawl or visit submitted URLs
+- interact with live websites
+- analyze malware
 
 AegisLink only performs static URL pattern analysis to help users understand possible risk signals.
 
-🗺️ Roadmap
- URL parsing
- Rule-based risk analysis
- Risk scoring
- Human-readable explanations
- SQLite analysis history
- Markdown report generation
- Docker setup
- PostgreSQL support
- API key authentication
- Simple dashboard UI
- Export reports as PDF
- Optional LLM-powered explanation layer
-🏷️ Tags
+---
 
-python fastapi cybersecurity backend security-tools url-analysis risk-scoring defensive-security ai-engineering portfolio-project hackathon-project
+## 🗺️ Roadmap
 
-👤 Author
+- [x] URL parsing
+- [x] Rule-based risk analysis
+- [x] Risk scoring
+- [x] Human-readable explanations
+- [x] SQLite analysis history
+- [x] Markdown report generation
+- [ ] Docker setup
+- [ ] PostgreSQL support
+- [ ] API key authentication
+- [ ] Simple dashboard UI
+- [ ] Export reports as PDF
+- [ ] Optional LLM-powered explanation layer
 
-Hvslen Ganbat
-GitHub: @FluxKnight
+---
+
+## 🏷️ Tags
+
+`python` `fastapi` `cybersecurity` `backend` `security-tools` `url-analysis` `risk-scoring` `defensive-security` `ai-engineering` `portfolio-project` `hackathon-project`
+
+---
+
+## 👤 Author
+
+**Hvslen Ganbat**  
+GitHub: [@FluxKnight](https://github.com/FluxKnight)
 
 Built as part of my portfolio for AI engineering, backend development, cybersecurity, and hackathon preparation.
 
+---
+
 <div align="center">
-🦋 AegisLink
 
-Think before you click. Understand before you trust.
+### 🦋 AegisLink  
+**Think before you click. Understand before you trust.**
 
-</div> ```
+</div>
