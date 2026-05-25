@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "original_url": "https://example-login-security.com/verify-account",
+  "normalized_url": "https://example-login-security.com/verify-account",
+  "domain": "example-login-security.com",
+  "scheme": "https",
+  "risk_score": 65,
+  "risk_level": "HIGH",
+  "findings": [
+    {
+      "code": "SUSPICIOUS_KEYWORD",
+      "title": "Suspicious keyword detected",
+      "description": "The URL contains login/security related words often used in phishing attempts.",
+      "weight": 20
+    }
+  ],
+  "explanation": "This link may be risky because it uses account verification language and security-related keywords.",
+  "recommendations": [
+    "Do not enter credentials or payment information.",
+    "Verify the sender and domain through an official channel."
+  ],
+  "created_at": "2026-05-25T12:00:00Z"
+}
